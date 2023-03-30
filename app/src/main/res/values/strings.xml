@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">App7_ListaContatos</string>
+    <string name="text_name"> name </string>
+    <string name="text_password"> password </string>
+    <string name="btn_login"> Login </string>
+    <string name="btn_save"> Salvar </string>
+    <string name="btn_new_user">new user</string>
+    <string name="text_user_name">user name</string>
+    <string name="text_conf_password">conf. senha</string>
 </resources>
