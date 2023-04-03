@@ -1,18 +1,25 @@
 package com.example.app7_listacontatos.model;
 
-public class Contact {
-    String nickname;
-    String name;
-    String lastName;
-    String phone;
+import java.io.Serializable;
 
-    public Contact() {
+public class Contact implements Serializable {
+    String nickname;
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 
-    public Contact(String nickname, String name, String lastName, String phone) {
+    String name;
+    String phone;
+
+    public Contact(String nickname, String name, String phone) {
         this.nickname = nickname;
         this.name = name;
-        this.lastName = lastName;
         this.phone = phone;
     }
 
@@ -22,10 +29,6 @@ public class Contact {
 
     public String getName() {
         return name;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public String getPhone() {

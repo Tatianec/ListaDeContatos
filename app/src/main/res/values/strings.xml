@@ -1,12 +1,17 @@
 <resources>
-    <string name="app_name">App7_ListaContatos</string>
+    <string name="app_name">Lista de Contatos</string>
     <string name="text_name"> name </string>
     <string name="text_contacts"> Contatos </string>
     <string name="text_password"> password </string>
     <string name="btn_login"> Login </string>
     <string name="btn_save"> Salvar </string>
+    <string name="btn_new_contact"> Novo contato </string>
     <string name="btn_new_user">new user</string>
     <string name="text_user_name">user name</string>
     <string name="text_conf_password">conf. senha</string>
     <string name="text_page_new_user"> Novo Usuário </string>
+    <string name="text_page_new_contact"> Novo Contato </string>
+    <string name="text_nickname">nickname</string>
+    <string name="text_contact_name">name</string>
+    <string name="text_phone">phone</string>
 </resources>

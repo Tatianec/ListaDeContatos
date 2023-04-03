@@ -12,6 +12,9 @@
         android:theme="@style/Theme.App7_ListaContatos"
         tools:targetApi="31">
         <activity
+            android:name=".view.NewContactActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.NewUserActivity"
             android:exported="false" />
         <activity

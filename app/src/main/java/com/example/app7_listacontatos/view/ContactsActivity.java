@@ -2,15 +2,98 @@ package com.example.app7_listacontatos.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.app7_listacontatos.R;
+import com.example.app7_listacontatos.dao.ContactDatabase;
+import com.example.app7_listacontatos.dao.UserDao;
+import com.example.app7_listacontatos.dao.UserDatabase;
+import com.example.app7_listacontatos.model.Contact;
+import com.example.app7_listacontatos.model.User;
+import com.example.app7_listacontatos.view.adapter.ContactAdapter;
 
-public class ContactsActivity extends AppCompatActivity {
+import java.util.List;
 
+public class ContactsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+
+    private TextView textNickName;
+    private TextView textPhone;
+    private Button buttonNewContact;
+    private Spinner listContactSpinner;
+    private User user;
+
+    ArrayAdapter<Contact> adapterContacts;
+
+    @SuppressLint( "MissingInflatedId" )
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
+        textNickName = findViewById(R.id.text_nickname);
+        textPhone = findViewById(R.id.text_phone);
+
+        buttonNewContact = findViewById(R.id.button_create_new_contact);
+
+        buttonNewContact.setOnClickListener(this);
+
+        listContactSpinner = findViewById(R.id.spinner_contact);
+        listContactSpinner.setOnItemSelectedListener(this);
+
+        user = ( User ) getIntent().getSerializableExtra("user");
+
+        populateSpinner();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Contact contact = ( Contact ) listContactSpinner.getItemAtPosition(position);
+        if ( contact != null ) {
+            textNickName.setText(contact.getName());
+            textPhone.setText(contact.getPhone());
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch ( view.getId() ) {
+            case R.id.button_create_new_contact:
+                criarNovoContato();
+                break;
+        }
+    }
+
+    public void criarNovoContato() {
+        Intent newUserIntent = new Intent(getApplicationContext(), NewContactActivity.class);
+        newUserIntent.putExtra("user", user);
+        startActivity(newUserIntent);
+        finish();
+    }
+
+    private void populateSpinner() {
+        List<Contact> dataset = user.getContacts();
+        dataset.add(0, null);
+        ContactAdapter adapter = new ContactAdapter(this, android.R.layout.simple_spinner_item, dataset);
+        listContactSpinner.setAdapter(adapter);
+    }
+
 }

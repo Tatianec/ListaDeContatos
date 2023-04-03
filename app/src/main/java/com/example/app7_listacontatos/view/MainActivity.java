@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonLogin.setOnClickListener(this);
 
     }
+
     @Override
     public void onClick(View view) {
         switch ( view.getId() ) {
@@ -50,18 +51,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void criarNovoUsuario(){
-            Intent newUser = new Intent(getApplicationContext(), NewUserActivity.class);
-            startActivity(newUser);
+    public void criarNovoUsuario() {
+        Intent newUser = new Intent(getApplicationContext(), NewUserActivity.class);
+        startActivity(newUser);
     }
 
-    public void verificarLogin(){
+    public void verificarLogin() {
 
         String username = editTextName.getText().toString();
         String password = editTextPassword.getText().toString();
 
-        if (UserDatabase.getInstance().validateUser(username, password)) {
+        if ( UserDatabase.getInstance().validateUser(username, password) ) {
             Intent intent = new Intent(MainActivity.this, ContactsActivity.class);
+            intent.putExtra("user", UserDatabase.getInstance().findByUsername(username));
             startActivity(intent);
         } else {
             Toast.makeText(getApplicationContext(), "Usuário não encontrado!", Toast.LENGTH_LONG).show();

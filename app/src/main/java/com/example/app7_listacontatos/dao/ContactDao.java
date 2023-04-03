@@ -3,9 +3,13 @@ package com.example.app7_listacontatos.dao;
 import com.example.app7_listacontatos.model.Contact;
 import com.example.app7_listacontatos.model.User;
 
+import java.util.List;
+
 public interface ContactDao {
 
-    void addContact(Contact contact);
+    List<Contact> addContact(Contact contact);
 
-    User findById(int id);
+    Contact findById(int id);
+
+    public boolean validateContact(int id);
 }

@@ -10,14 +10,20 @@ import android.widget.EditText;
 
 import com.example.app7_listacontatos.R;
 
+import com.example.app7_listacontatos.dao.ContactDatabase;
 import com.example.app7_listacontatos.dao.UserDatabase;
+import com.example.app7_listacontatos.model.Contact;
 import com.example.app7_listacontatos.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewUserActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextName;
     private EditText editTextPassword;
     private EditText editTextConfPassword;
     private Button buttonSave;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +39,21 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
     @Override
     public void onClick(View view) {
         String name;
         String password;
         String confPassord;
+        List<Contact> contacts;
 
-        if(editTextName != null && editTextPassword != null && editTextConfPassword != null){
+        if ( editTextName != null && editTextPassword != null && editTextConfPassword != null ) {
             name = String.valueOf(editTextName.getText());
             password = String.valueOf(editTextPassword.getText());
             confPassord = String.valueOf(editTextConfPassword.getText());
+            contacts = ContactDatabase.getInstance().getAllContacts();
 
-            User user = new User(name, password, confPassord);
+            User user = new User(name, password, confPassord, contacts);
 
             UserDatabase.getInstance().addUser(user);
 

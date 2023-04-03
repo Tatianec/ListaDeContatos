@@ -6,28 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".view.ContactsActivity">
 
-    <TextView
-        android:id="@+id/text_contact"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:hint="@string/text_contacts"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Spinner
+        android:id="@+id/spinner_contact"
+        android:layout_width="244dp"
+        android:layout_height="47dp"
+        android:layout_margin="4dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_nickname"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.330"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_contact" />
+
+    <TextView
+        android:id="@+id/text_phone"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_create_new_contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_nickname"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <Button
-        android:id="@+id/button_create_new_user"
+        android:id="@+id/button_create_new_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:text="@string/btn_save"
+        android:layout_marginBottom="160dp"
+        android:text="@string/btn_new_contact"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_contact" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
