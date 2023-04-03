@@ -5,7 +5,7 @@ import com.example.app7_listacontatos.model.Contact;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactDatabase implements ContactDao{
+public class ContactDatabase{
 
     private List<Contact> contacts = new ArrayList<>();
 
@@ -31,13 +31,4 @@ public class ContactDatabase implements ContactDao{
         return contacts;
     }
 
-    @Override
-    public Contact findById(int id) {
-        return null;
-    }
-
-    public boolean validateContact(int id) {
-
-        return false;
-    }
 }

@@ -4,16 +4,6 @@ import java.io.Serializable;
 
 public class Contact implements Serializable {
     String nickname;
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "nickname='" + nickname + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
-
     String name;
     String phone;
 
@@ -33,6 +23,15 @@ public class Contact implements Serializable {
 
     public String getPhone() {
         return phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 
 }

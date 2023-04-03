@@ -1,22 +1,19 @@
 package com.example.app7_listacontatos.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.app7_listacontatos.R;
-import com.example.app7_listacontatos.dao.ContactDatabase;
-import com.example.app7_listacontatos.dao.UserDao;
-import com.example.app7_listacontatos.dao.UserDatabase;
 import com.example.app7_listacontatos.model.Contact;
 import com.example.app7_listacontatos.model.User;
 import com.example.app7_listacontatos.view.adapter.ContactAdapter;
@@ -24,14 +21,11 @@ import com.example.app7_listacontatos.view.adapter.ContactAdapter;
 import java.util.List;
 
 public class ContactsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-
     private TextView textNickName;
     private TextView textPhone;
     private Button buttonNewContact;
     private Spinner listContactSpinner;
     private User user;
-
-    ArrayAdapter<Contact> adapterContacts;
 
     @SuppressLint( "MissingInflatedId" )
     @Override
@@ -51,7 +45,16 @@ public class ContactsActivity extends AppCompatActivity implements AdapterView.O
 
         user = ( User ) getIntent().getSerializableExtra("user");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         populateSpinner();
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -69,9 +72,7 @@ public class ContactsActivity extends AppCompatActivity implements AdapterView.O
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
+    public void onNothingSelected(AdapterView<?> adapterView) { }
 
     @Override
     public void onClick(View view) {

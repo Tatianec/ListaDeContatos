@@ -27,20 +27,11 @@ public class UserDatabase implements UserDao {
             users.add(user);
     }
 
-    @Override
-    public User findById(int id) {
-        return null;
-    }
-
     public User findByUsername(String username) {
         return getAllUsers().stream()
                 .filter(user -> user.getName().equals(username))
                 .findAny()
                 .orElse(null);
-    }
-
-    public void addContacts(Contact contact) {
-        contacts.add(contact);
     }
 
     public boolean validateUser(String username, String password) {

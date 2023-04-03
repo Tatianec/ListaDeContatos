@@ -1,12 +1,15 @@
 package com.example.app7_listacontatos.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.app7_listacontatos.R;
 
@@ -15,7 +18,6 @@ import com.example.app7_listacontatos.dao.UserDatabase;
 import com.example.app7_listacontatos.model.Contact;
 import com.example.app7_listacontatos.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewUserActivity extends AppCompatActivity implements View.OnClickListener {
@@ -39,6 +41,13 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onClick(View view) {
@@ -53,12 +62,18 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
             confPassord = String.valueOf(editTextConfPassword.getText());
             contacts = ContactDatabase.getInstance().getAllContacts();
 
-            User user = new User(name, password, confPassord, contacts);
+            if ( password.equals(confPassord)) {
+                User user = new User(name, password, confPassord, contacts);
 
-            UserDatabase.getInstance().addUser(user);
+                UserDatabase.getInstance().addUser(user);
 
-            Intent home = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(home);
+                Intent home = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(home);
+            } else {
+                Toast.makeText(this, "Favor verificar os campos informados! As senhas precisam ser iguais",
+                        Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 }

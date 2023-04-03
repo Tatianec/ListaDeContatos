@@ -4,15 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 public class User implements Serializable {
-    int id;
     String name;
     String password;
     String confPassword;
     List<Contact> contacts;
 
-    int contador = 0;
     public User(String name, String password, String confPassword, List<Contact> contacts) {
-        id = contador++;
         this.name = name;
         this.password = password;
         this.confPassword = confPassword;
@@ -22,9 +19,6 @@ public class User implements Serializable {
     public User() {
     }
 
-    public int getId() {
-        return id;
-    }
     public String getName() {
         return name;
     }
@@ -45,11 +39,9 @@ public class User implements Serializable {
         return contacts;
     }
 
-
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", confPassword='" + confPassword + '\'' +
